@@ -51,13 +51,15 @@ void constructLaplacianMatrix(int8_t** matrix, const int8_t matrixSize) {
 	for (int8_t i = 0; i < matrixSize; i++) {
 		matrix[i] = new int8_t[matrixSize];
 		for (int8_t j = 0; j < matrixSize; j++) {
-			if (i == j) {
-				matrix[i][j] = (matrixSize ^ 2) - 1;
+			if (i == matrixSize/2 && j == matrixSize/2) {
+				matrix[i][j] = pow(matrixSize,2) - 1;
 			}
-
 			else {
 				matrix[i][j] = -1;
+
 			}
+			cout <<(int) matrix[i][j] << ',';
+
 
 		}
 		cout << endl;
@@ -98,7 +100,7 @@ void constructGaussianMatrix(double** matrix, int size) {
 
 int main() {
 	const size_t size = 7;
-	uint8_t filter = Filters::GaussianBlur;
+	uint8_t filter = Filters::LaplacianOperator;
 	switch (filter) {
 	case SimpleBoxBlur: {
 		float** simpleMatrix = new float* [size];
